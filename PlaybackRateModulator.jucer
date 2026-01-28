@@ -14,6 +14,13 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="l4gLsR" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="D4Spwp" name="CircularBuffer.cpp" compile="1" resource="0"
+          file="Source/CircularBuffer.cpp"/>
+    <FILE id="tGolpM" name="CircularBuffer.h" compile="0" resource="0"
+          file="Source/CircularBuffer.h"/>
+    <FILE id="nZaj1E" name="ToneGenerator.cpp" compile="1" resource="0"
+          file="Source/ToneGenerator.cpp"/>
+    <FILE id="iPdmJa" name="ToneGenerator.h" compile="0" resource="0" file="Source/ToneGenerator.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
