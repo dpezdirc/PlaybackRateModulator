@@ -4,7 +4,15 @@
 
 #pragma once
 
+#include "CircularBuffer.h"
+
 #include <JuceHeader.h>
+
+#define DEBUG_MODE 0
+
+#if DEBUG_MODE
+#include "ToneGenerator.h"
+#endif
 
 //------------------------------------------------------------------------------
 class PlaybackRateModulatorAudioProcessor : public juce::AudioProcessor
@@ -26,7 +34,7 @@ public:
 	//--------------------------------------
 	// Mandatory, one-liner overrides
 	//--------------------------------------
-	bool hasEditor() const override { return true; }
+	bool hasEditor() const override { return false; }
 	bool acceptsMidi() const override { return false; }
 	bool producesMidi() const override { return false; }
 	bool isMidiEffect() const override { return false; }
@@ -39,5 +47,17 @@ public:
 	void setCurrentProgram(int index) override {}
 
 private:
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PlaybackRateModulatorAudioProcessor)
+	CircularBuffer m_buffer[2];
+	std::atomic<float>* m_pRateParam;
+	std::atomic<float>* m_pBufferSizeParam;;
+	float m_delayLastFrame; // delay (samples) of the last sample of the last frame
+	float m_bufferLengthLast;
+
+#if DEBUG_MODE
+	ToneGenerator m_toneGenerator;
+#endif
+
+	juce::AudioProcessorValueTreeState m_params;
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PlaybackRateModulatorAudioProcessor)
 };
